@@ -17,13 +17,13 @@ function VotingContainer(): JSX.Element {
                 </Toolbar>
             </AppBar>
             <Grid container>
-                <Grid item xs={4}>
+                <Grid item xs={4} sx={{ height: '100%' }}>
                     <Poll />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={4} sx={{ borderLeft: '1px solid #dfdede' }}>
                     <Vote />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={4} sx={{ borderLeft: '1px solid #dfdede' }}>
                     <Chart />
                 </Grid>
             </Grid>

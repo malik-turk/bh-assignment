@@ -13,10 +13,20 @@ const OptionsTitle = styled(Typography)(({ theme }) => ({
     margin: '24px 0 0',
     fontWeight: 500
 }));
+const PollContainer = styled(Box)(({ theme }) => ({
+    flexDirection: 'column',
+    display: 'flex',
+    padding: theme.spacing(1.5),
+    marginTop: theme.spacing(5),
+    height: '100%'
+}));
+const PollFooter = styled(Box)(({ theme }) => ({
+    marginTop: 'auto'
+}));
 
 export default function Poll(): JSX.Element {
   return (
-    <Box flexDirection="column" padding="12px" marginTop={5}>
+    <PollContainer>
         <TextField label="Question" variant="outlined" fullWidth />
         <OptionsTitle variant="body1">
             Answers:
@@ -33,6 +43,7 @@ export default function Poll(): JSX.Element {
                 <AddIcon />
             </Button>
         </Box>
-    </Box>
+        <PollFooter>t3rees</PollFooter>
+    </PollContainer>
   );
 }
