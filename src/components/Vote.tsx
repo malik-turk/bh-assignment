@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import Radio from '@mui/material/Radio';
@@ -13,9 +14,14 @@ const OptionsTitle = styled(Typography)(({ theme }) => ({
 }));
 const VoteContainer = styled(Box)(({ theme }) => ({
     flexDirection: 'column',
+    display: 'flex',
     padding: theme.spacing(1.5),
-    marginTop: theme.spacing(5),
     height: '100%'
+}));
+const PollFooter = styled(Box)(({ theme }) => ({
+  marginTop: 'auto',
+  display: 'flex',
+  justifyContent: 'flex-end'
 }));
 
 function Vote(): JSX.Element {
@@ -30,6 +36,9 @@ function Vote(): JSX.Element {
         <FormControlLabel value="3.1432" control={<Radio />} label="3.1432" />
         <FormControlLabel value="3.142222" control={<Radio />} label="3.142222" />
       </RadioGroup>
+      <PollFooter>
+          <Button variant="contained">VOTE</Button>
+      </PollFooter>
     </VoteContainer>
   )
 }

@@ -11,7 +11,6 @@ const OptionsTitle = styled(Typography)(({ theme }) => ({
 const ChartContainer = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   padding: theme.spacing(1.5),
-  marginTop: theme.spacing(5),
   height: '100%'
 }));
 // Temporary

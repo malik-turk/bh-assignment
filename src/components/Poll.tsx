@@ -17,12 +17,14 @@ const PollContainer = styled(Box)(({ theme }) => ({
     flexDirection: 'column',
     display: 'flex',
     padding: theme.spacing(1.5),
-    marginTop: theme.spacing(5),
     height: '100%'
 }));
 const PollFooter = styled(Box)(({ theme }) => ({
-    marginTop: 'auto'
+    marginTop: 'auto',
+    display: 'flex',
+    justifyContent: 'space-between'
 }));
+const OptionsCounter = styled(Typography)``;
 
 export default function Poll(): JSX.Element {
   return (
@@ -43,7 +45,10 @@ export default function Poll(): JSX.Element {
                 <AddIcon />
             </Button>
         </Box>
-        <PollFooter>t3rees</PollFooter>
+        <PollFooter>
+            <OptionsCounter variant="body1">3 / 10 possible answers</OptionsCounter>
+            <Button variant="contained">RESET</Button>
+        </PollFooter>
     </PollContainer>
   );
 }
