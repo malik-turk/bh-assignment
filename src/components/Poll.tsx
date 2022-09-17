@@ -35,14 +35,14 @@ export default function Poll(): JSX.Element {
         </OptionsTitle>
         <Box display="flex" marginTop={1}>
             <TextField placeholder="Type an answer" variant="outlined" fullWidth />
-            <Button sx={{ marginLeft: 1 }} variant="outlined">
-                <CloseIcon />
+            <Button sx={{ marginLeft: 1 }} variant="outlined" color="error">
+                <CloseIcon color="error" />
             </Button>
         </Box>
         <Box display="flex" marginTop={1}>
             <TextField placeholder="Type an answer" variant="outlined" fullWidth />
-            <Button sx={{ marginLeft: 1 }} variant="outlined">
-                <AddIcon />
+            <Button sx={{ marginLeft: 1 }} variant="outlined" color="success">
+                <AddIcon color="success" />
             </Button>
         </Box>
         <PollFooter>
