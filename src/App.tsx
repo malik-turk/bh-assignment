@@ -1,6 +1,10 @@
+import VotingPage from "./pages/VotingPage";
+
 function App() {
   return (
-    <div>app</div>
+    <>
+      <VotingPage />
+    </>
   );
 }
 
