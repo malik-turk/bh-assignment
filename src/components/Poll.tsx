@@ -59,11 +59,11 @@ function Poll({ store }: { store: VotingPageStore }): JSX.Element {
         questionOptions,
         removeQuestionOption,
         resetQuestionOptions,
-        updateQuestionOption
+        updateQuestionOption,
+        isOptionsBelowMin,
+        maxOptionsReached
     } = store;
     const [newOption, setNewOption] = useState<string>('');
-    const isOptionBelowMin: boolean = useMemo(() => getQuestionOptionsLength < MIN_NUMBER_OF_OPTIONS, [getQuestionOptionsLength]);
-    const maxOptionsReached: boolean = useMemo(() => getQuestionOptionsLength === MAX_NUMBER_OF_OPTIONS, [getQuestionOptionsLength]);
 
     /**
      * Add new option to answers array
@@ -78,6 +78,7 @@ function Poll({ store }: { store: VotingPageStore }): JSX.Element {
         addQuestionOption({
             id: uuidv4(),
             title: newOption,
+            voteCount: 0
         });
         setNewOption('');
     };
@@ -127,7 +128,7 @@ function Poll({ store }: { store: VotingPageStore }): JSX.Element {
                                 inputProps={{ maxLength: MAX_FIELD_CHAR_LENGTH }}
                                 onChange={(e) => handleUpdateOption(i, e.target.value)}
                             />
-                            <Tooltip title={isOptionBelowMin ? OPTIONS_BELOW_MIN_NUMBER : ''} placement="bottom">
+                            <Tooltip title={isOptionsBelowMin ? OPTIONS_BELOW_MIN_NUMBER : ''} placement="bottom">
                                 {/* ButtonContainer added here since Tooltip is not working with disabled buttons */}
                                 <ButtonContainer>
                                     <Button
@@ -135,9 +136,9 @@ function Poll({ store }: { store: VotingPageStore }): JSX.Element {
                                         variant="outlined"
                                         color="error"
                                         onClick={() => removeQuestionOption(i)}
-                                        disabled={isOptionBelowMin}
+                                        disabled={isOptionsBelowMin}
                                     >
-                                        <CloseIcon color={isOptionBelowMin ? 'disabled' : 'error'} />
+                                        <CloseIcon color={isOptionsBelowMin ? 'disabled' : 'error'} />
                                     </Button>
                                 </ButtonContainer>
                             </Tooltip>
