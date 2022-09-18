@@ -1,4 +1,4 @@
 export interface QuestionOptions {
-    id: string;
+    id?: string;
     title: string;
 }

@@ -39,6 +39,12 @@ const OptionsContainer = styled('span')`
     height: 65vh;
     overflow: hidden;
     overflow-y: scroll;
+    border: 1px dashed #eeeeee;
+    padding: 0px 8px;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `;
 const ButtonContainer = styled('div')`
     display: flex;
@@ -52,7 +58,8 @@ function Poll({ store }: { store: VotingPageStore }): JSX.Element {
         getQuestionOptionsLength,
         questionOptions,
         removeQuestionOption,
-        resetQuestionOptions
+        resetQuestionOptions,
+        updateQuestionOption
     } = store;
     const [newOption, setNewOption] = useState<string>('');
     const isOptionBelowMin: boolean = useMemo(() => getQuestionOptionsLength < MIN_NUMBER_OF_OPTIONS, [getQuestionOptionsLength]);
@@ -73,6 +80,15 @@ function Poll({ store }: { store: VotingPageStore }): JSX.Element {
             title: newOption,
         });
         setNewOption('');
+    };
+
+    /**
+     * Update option within answers array
+     * @param i index of the option
+     * @param title title of the option
+     */
+    const handleUpdateOption = (i: number, title: string): void => {
+        updateQuestionOption(i, title);
     };
 
     /**
@@ -102,7 +118,13 @@ function Poll({ store }: { store: VotingPageStore }): JSX.Element {
                 {
                     questionOptions.map((option: QuestionOptions, i: number) => (
                         <Box key={option.id} display="flex" paddingTop={1}>
-                            <TextField placeholder="Type an answer" variant="outlined" fullWidth value={option.title} />
+                            <TextField
+                                placeholder="Type an answer"
+                                variant="outlined"
+                                fullWidth
+                                value={option.title}
+                                onChange={(e) => handleUpdateOption(i, e.target.value)}
+                            />
                             <Tooltip title={isOptionBelowMin ? OPTIONS_BELOW_MIN_NUMBER : ''} placement="bottom">
                                 {/* ButtonContainer added here since Tooltip is not working with disabled buttons */}
                                 <ButtonContainer>

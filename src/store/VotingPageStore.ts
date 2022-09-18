@@ -1,5 +1,4 @@
 import { makeAutoObservable, observable, action, computed } from "mobx";
-import { v4 as uuidv4 } from 'uuid';
 
 // Types
 import { QuestionOptions } from '../types/voting-data';
@@ -22,6 +21,10 @@ export default class VotingPageStore {
 
     @action removeQuestionOption = (i: number) => {
       this.questionOptions.splice(i, 1);
+    }
+
+    @action updateQuestionOption = (i: number, value: string) => {
+      this.questionOptions[i].title = value;
     }
 
     @action resetQuestionOptions = () => {
