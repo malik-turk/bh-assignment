@@ -14,7 +14,7 @@ import AddIcon from '@mui/icons-material/Add';
 import VotingPageStore from '../store/VotingPageStore';
 
 // Constants
-import { MAX_NUMBER_OF_OPTIONS, MIN_NUMBER_OF_OPTIONS } from '../constants/default.constants';
+import { MAX_NUMBER_OF_OPTIONS, MIN_NUMBER_OF_OPTIONS, MAX_FIELD_CHAR_LENGTH } from '../constants/default.constants';
 import { OPTIONS_BELOW_MIN_NUMBER, QUESTIONS_EMPTY_MESSAGE } from '../constants/tooltip-messages.constants';
 import { QuestionOptions } from '../types/voting-data';
 
@@ -36,11 +36,11 @@ const PollFooter = styled(Box)(({ theme }) => ({
 }));
 const OptionsCounter = styled(Typography)``;
 const OptionsContainer = styled('span')`
-    height: 65vh;
+    max-height: 65vh;
     overflow: hidden;
     overflow-y: scroll;
     border: 1px dashed #eeeeee;
-    padding: 0px 8px;
+    padding: 0px 8px 8px;
 
     ::-webkit-scrollbar {
         display: none;
@@ -109,6 +109,7 @@ function Poll({ store }: { store: VotingPageStore }): JSX.Element {
                 fullWidth
                 value={question}
                 onChange={(e) => addQuestion(e.target.value)}
+                inputProps={{ maxLength: MAX_FIELD_CHAR_LENGTH }}
                 autoFocus
             />
             <OptionsTitle variant="body1">
@@ -123,6 +124,7 @@ function Poll({ store }: { store: VotingPageStore }): JSX.Element {
                                 variant="outlined"
                                 fullWidth
                                 value={option.title}
+                                inputProps={{ maxLength: MAX_FIELD_CHAR_LENGTH }}
                                 onChange={(e) => handleUpdateOption(i, e.target.value)}
                             />
                             <Tooltip title={isOptionBelowMin ? OPTIONS_BELOW_MIN_NUMBER : ''} placement="bottom">
@@ -150,6 +152,7 @@ function Poll({ store }: { store: VotingPageStore }): JSX.Element {
                             value={newOption}
                             onChange={(e) => setNewOption(e.target.value)}
                             onKeyDown={handleKeyboardSelection}
+                            inputProps={{ maxLength: MAX_FIELD_CHAR_LENGTH }}
                             fullWidth
                         />
                         <Tooltip title={!question ? QUESTIONS_EMPTY_MESSAGE : ''} placement="bottom">

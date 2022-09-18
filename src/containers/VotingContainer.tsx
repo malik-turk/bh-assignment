@@ -37,7 +37,7 @@ function VotingContainer({ store }: { store: VotingPageStore }): JSX.Element {
                     <Poll store={store} />
                 </Grid>
                 <Grid item xs={4} sx={gridItemStyles}>
-                    <Vote />
+                    <Vote store={store} />
                 </Grid>
                 <Grid item xs={4} sx={gridItemStyles}>
                     <Chart />
