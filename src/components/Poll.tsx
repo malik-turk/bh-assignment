@@ -17,6 +17,7 @@ import VotingPageStore from '../store/VotingPageStore';
 import { MAX_NUMBER_OF_OPTIONS, MAX_FIELD_CHAR_LENGTH } from '../constants/default.constants';
 import { OPTIONS_BELOW_MIN_NUMBER, QUESTIONS_EMPTY_MESSAGE } from '../constants/tooltip-messages.constants';
 import { QuestionOptions } from '../types/voting-data';
+import { POLL_ADD_BUTTON, POLL_RESET_BUTTON } from '../constants/test-ids.constants';
 
 // Styled components
 const OptionsTitle = styled(Typography)(({ theme }) => ({
@@ -165,6 +166,7 @@ function Poll({ store }: { store: VotingPageStore }): JSX.Element {
                                     color="success"
                                     onClick={handleNewOption}
                                     disabled={!question || maxOptionsReached}
+                                    data-testid={POLL_ADD_BUTTON}
                                 >
                                     <AddIcon color="inherit" />
                                 </Button>
@@ -177,7 +179,13 @@ function Poll({ store }: { store: VotingPageStore }): JSX.Element {
                 <OptionsCounter variant="body1">
                     {getQuestionOptionsLength} / {MAX_NUMBER_OF_OPTIONS} possible answers
                 </OptionsCounter>
-                <Button onClick={() => resetQuestionOptions()} variant="contained">RESET</Button>
+                <Button
+                    data-testid={POLL_RESET_BUTTON}
+                    onClick={() => resetQuestionOptions()}
+                    variant="contained"
+                >
+                    RESET
+                </Button>
             </PollFooter>
         </PollContainer>
     );
