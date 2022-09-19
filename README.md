@@ -17,6 +17,10 @@ For development, you will only need Node.js (16+) installed on your environement
 ### `npm install`
 ### `npm start`
 
+## Testing
+
+### `npm run test`
+
 Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
@@ -27,5 +31,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - Styled Components
 - ChartJS
 - MobX
+- Jest & React Testing Library
 
 ## Demo

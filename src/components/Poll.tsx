@@ -183,6 +183,7 @@ function Poll({ store }: { store: VotingPageStore }): JSX.Element {
                     data-testid={POLL_RESET_BUTTON}
                     onClick={() => resetQuestionOptions()}
                     variant="contained"
+                    disabled={!question}
                 >
                     RESET
                 </Button>
