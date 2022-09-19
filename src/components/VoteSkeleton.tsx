@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 
@@ -20,4 +21,4 @@ function VoteSkeleton(): JSX.Element {
   );
 }
 
-export default VoteSkeleton;
+export default memo(VoteSkeleton);
