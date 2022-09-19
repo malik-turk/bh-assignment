@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { observer } from "mobx-react"
 
-//Components
+// Components
 import Poll from '../components/Poll';
 import Vote from '../components/Vote';
 import Chart from '../components/Chart';
@@ -40,7 +40,7 @@ function VotingContainer({ store }: { store: VotingPageStore }): JSX.Element {
                     <Vote store={store} />
                 </Grid>
                 <Grid item xs={4} sx={gridItemStyles}>
-                    <Chart />
+                    <Chart store={store} />
                 </Grid>
             </Grid>
         </>

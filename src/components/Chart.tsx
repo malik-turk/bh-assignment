@@ -1,63 +1,64 @@
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
   Tooltip,
-  ResponsiveContainer
-} from "recharts";
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
+} from "chart.js";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+import { observer } from "mobx-react";
+import { Bar } from "react-chartjs-2";
 
 // Types
-import { ChartData } from "../types/chart-data";
+import VotingPageStore from "../store/VotingPageStore";
+import { QuestionOptions } from "../types/voting-data";
+
+// Constants
+import { options } from "../constants/chart.constants";
 
 // Styled components
 const OptionsTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 500,
-  marginTop: '12px',
-  marginBottom: '60px'
+  marginTop: "12px",
+  marginBottom: "60px",
 }));
 const ChartContainer = styled(Box)(({ theme }) => ({
-  flexDirection: 'column',
+  flexDirection: "column",
   padding: theme.spacing(1.5),
-  height: '100%'
+  height: "100%",
 }));
 
-const chartData: ChartData[] = [
-  {
-    count: 30,
-    name: 3.144
-  },
-  {
-    count: 5,
-    name: 3.144
-  },
-  {
-    count: 10,
-    name: 3.144
-  }
-];
+// Register chart items
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
-function Chart(): JSX.Element {
+function Chart({ store }: { store: VotingPageStore }): JSX.Element {
+  const { questionOptions, question } = store;
+
+  const data = {
+    labels: questionOptions.map((options: QuestionOptions) => options.title),
+    datasets: [
+      {
+        data: questionOptions.map(
+          (options: QuestionOptions) => options.voteCount
+        ),
+        backgroundColor: "#82ca9d",
+      },
+    ],
+  };
+
   return (
     <ChartContainer>
-      <OptionsTitle variant="h6">What is the value of x?</OptionsTitle>
-      <ResponsiveContainer width="100%" height={400}>
-        <BarChart
-          data={chartData}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis dataKey="count" />
-          <Tooltip />
-          <Bar dataKey="count" fill="#82ca9d" />
-        </BarChart>
-      </ResponsiveContainer>
+      <OptionsTitle color={question ? "" : "lightgray"} variant="h6">
+        {question
+          ? question
+          : "Question and options will appear here when they're created."}
+      </OptionsTitle>
+      <Bar options={options} data={data} />
     </ChartContainer>
-  )
+  );
 }
 
-export default Chart;
+export default observer(Chart);

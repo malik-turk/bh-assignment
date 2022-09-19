@@ -39,7 +39,7 @@ export default class VotingPageStore {
   };
 
   @action increaseVoteCounter = (i: number) => {
-    this.questionOptions[i].voteCount++;
+    this.questionOptions[i].voteCount += 1;
   };
 
   @computed get getQuestionOptionsLength(): number {

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -14,7 +14,7 @@ import AddIcon from '@mui/icons-material/Add';
 import VotingPageStore from '../store/VotingPageStore';
 
 // Constants
-import { MAX_NUMBER_OF_OPTIONS, MIN_NUMBER_OF_OPTIONS, MAX_FIELD_CHAR_LENGTH } from '../constants/default.constants';
+import { MAX_NUMBER_OF_OPTIONS, MAX_FIELD_CHAR_LENGTH } from '../constants/default.constants';
 import { OPTIONS_BELOW_MIN_NUMBER, QUESTIONS_EMPTY_MESSAGE } from '../constants/tooltip-messages.constants';
 import { QuestionOptions } from '../types/voting-data';
 
