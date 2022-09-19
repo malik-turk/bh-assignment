@@ -9,7 +9,7 @@ jest.mock("react-chartjs-2", () => ({
   Bar: () => null,
 }));
 
-test("Enable add button when the question is added", () => {
+test("enable add button when the question is added", () => {
   const store = new VotingPageStore();
 
   store.addQuestion('What is the value of x?');
@@ -19,7 +19,7 @@ test("Enable add button when the question is added", () => {
   expect(pollScreenBtn).toBeEnabled();
 });
 
-test("Should remove question and options if reset button is clicked", () => {
+test("should remove question and options if reset button is clicked", () => {
   const store = new VotingPageStore();
 
   store.addQuestion('What is the value of x?');

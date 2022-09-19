@@ -15,7 +15,7 @@ import { QuestionOptions } from "../types/voting-data";
 
 // Constants
 import { MIN_NUMBER_OF_OPTIONS } from "../constants/default.constants";
-import { VOTE_RADIO_BUTTON_PREFIX } from "../constants/test-ids.constants";
+import { VOTE_RADIO_BUTTON_PREFIX, VOTE_BUTTON } from "../constants/test-ids.constants";
 
 // Styled components
 const OptionsTitle = styled(Typography)(({ theme }) => ({
@@ -79,6 +79,7 @@ function Vote({ store }: { store: VotingPageStore }): JSX.Element {
           disabled={isOptionsBelowMin}
           variant="contained"
           onClick={() => increaseVoteCounter(selectedOptionIndex)}
+          data-testid={VOTE_BUTTON}
         >
           VOTE
         </Button>
