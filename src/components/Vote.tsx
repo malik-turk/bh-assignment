@@ -15,6 +15,7 @@ import { QuestionOptions } from "../types/voting-data";
 
 // Constants
 import { MIN_NUMBER_OF_OPTIONS } from "../constants/default.constants";
+import { VOTE_RADIO_BUTTON_PREFIX } from "../constants/test-ids.constants";
 
 // Styled components
 const OptionsTitle = styled(Typography)(({ theme }) => ({
@@ -66,6 +67,7 @@ function Vote({ store }: { store: VotingPageStore }): JSX.Element {
               value={i}
               control={<Radio />}
               label={options.title}
+              data-testid={`${VOTE_RADIO_BUTTON_PREFIX}-${i}`}
             />
           ))}
         </RadioGroup>
